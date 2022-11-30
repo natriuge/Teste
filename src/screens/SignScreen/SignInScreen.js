@@ -12,7 +12,6 @@ import epistemicLogo from "../../../assets/images/epistemic-logo.png";
 import CustomButton from "../../components/CustomButton";
 import { useNavigation } from "@react-navigation/native";
 import { useForm, Controller } from "react-hook-form";
-import api from "../../../api/api";
 
 
 const SignInScreen = () => {
