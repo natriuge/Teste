@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import CustomButton from "../../components/CustomButton";
 import { useNavigation } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/AntDesign";
 
 const BlockScreen = () => {
   const navigation = useNavigation();
@@ -13,7 +14,8 @@ const BlockScreen = () => {
   return (
     <View style={styles.root}>
       <Text style={styles.title}>Bloqueio Temporário</Text>
-
+      <Icon name="frowno" size={90} color="#64348470" margin={50} />
+      <Text style={styles.title}>Senha incorreta</Text>
       <CustomButton
         text="Voltar para o Login"
         onPress={onSignInPress}
