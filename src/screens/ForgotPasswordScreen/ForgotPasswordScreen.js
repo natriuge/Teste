@@ -5,17 +5,18 @@ import CustomInput from "../../components/CustomInput/CustomInput";
 import { useNavigation } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
 
-const ForgotPasswordScreen = () => {
+const ForgotPasswordScreen = (props) => {
   // const [username, setUsername] = useState("");
 
-  const [email, setEmail] = useState("");
+  
+ console.log(props, 'props.email')
 
   const {
     control,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      email: 'default'
+      email: props.email
     }
   });
 
@@ -36,10 +37,6 @@ const ForgotPasswordScreen = () => {
       <CustomInput
         placeholder="E-mail"
         control={control}
-        rules={{
-          required: "O uso do e-mail é obrigatório",
-          validate: (value) => value === e || "E-mail está incorreto",
-        }}
         name="email"
         icon_name="user"
       />

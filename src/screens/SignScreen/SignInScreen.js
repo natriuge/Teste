@@ -16,13 +16,13 @@ import { useForm } from "react-hook-form";
 const SignInScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [counter, setCounter] = useState(0);
 
   const { height } = useWindowDimensions();
   const navigation = useNavigation();
 
   const {
     control,
-    handleSubmit,
     formState: { errors },
     watch,
   } = useForm();
@@ -31,7 +31,14 @@ const SignInScreen = () => {
   const typedPassword = "epistemic";
 
   const onSignInPressed = () => {
-    navigation.navigate("Home");
+    if (counter > 3) {
+      navigation.navigate("Block");
+    }
+    if (email === typedEmail && password === typedPassword) {
+      navigation.navigate("Home");
+    } else {
+      setCounter(counter + 1);
+    }
   };
 
   const onForgotPasswordPressed = () => {
@@ -53,6 +60,7 @@ const SignInScreen = () => {
       <CustomInput
         placeholder="E-mail"
         control={control}
+        onChangeHandler={setEmail}
         rules={{
           required: "O uso do e-mail é obrigatório",
           validate: (value) => value === typedEmail || "E-mail está incorreto",
@@ -63,6 +71,7 @@ const SignInScreen = () => {
       <CustomInput
         placeholder="Senha"
         control={control}
+        onChangeHandler={setPassword}
         rules={{
           required: "O uso da senha é obrigatório",
           minLength: {
@@ -76,8 +85,7 @@ const SignInScreen = () => {
         icon_name="lock1"
         secureTextEntry={true}
       />
-
-      <CustomButton text="ENTRAR" onPress={handleSubmit(onSignInPressed)} />
+      <CustomButton text="ENTRAR" onPress={onSignInPressed} />
       <CustomButton
         text="Esqueceu sua senha? Clique Aqui"
         onPress={onForgotPasswordPressed}

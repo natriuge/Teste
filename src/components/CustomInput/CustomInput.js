@@ -10,6 +10,7 @@ const CustomInput = ({
   placeholder,
   secureTextEntry,
   icon_name,
+  onChangeHandler
 }) => {
   return (
     <Controller
@@ -29,7 +30,7 @@ const CustomInput = ({
           >
             <TextInput
               value={value}
-              onChangeText={onChange}
+              onChangeText={value => onChangeHandler(value)}
               onBlur={onBlur}
               placeholder={placeholder}
               style={[styles.input, {}]}

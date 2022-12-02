@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SignInScreen from "../screens/SignScreen/SignInScreen";
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen/ForgotPasswordScreen";
 import HomeScreen from "../screens/HomeScreen/HomeScreen"
+import BlockScreen from "../screens/BlockScreen";
 
 const Stack = createNativeStackNavigator();
 const MyTheme = {
@@ -20,6 +21,8 @@ const Navigation = () => {
         <Stack.Screen name="SignIn" component={SignInScreen} />
         <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen}/>
         <Stack.Screen name="Home" component={HomeScreen}/>
+        <Stack.Screen name="Block" component={BlockScreen}/>
+
       </Stack.Navigator>
     </NavigationContainer>
   );
