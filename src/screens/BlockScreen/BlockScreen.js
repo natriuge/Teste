@@ -13,6 +13,7 @@ const BlockScreen = () => {
   return (
     <View style={styles.root}>
       <Text style={styles.title}>Bloqueio Temporário</Text>
+
       <CustomButton
         text="Voltar para o Login"
         onPress={onSignInPress}

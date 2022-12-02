@@ -63,7 +63,7 @@ const SignInScreen = () => {
         onChangeHandler={setEmail}
         rules={{
           required: "O uso do e-mail é obrigatório",
-          validate: (value) => value === typedEmail || "E-mail está incorreto",
+          validate: (value) => [value === typedEmail || "E-mail está incorreto", console.log(value)],
         }}
         name="email"
         icon_name="user"
