@@ -3,10 +3,22 @@ import { View, StyleSheet, Text, ScrollView } from "react-native";
 import CustomButton from "../../components/CustomButton";
 import CustomInput from "../../components/CustomInput/CustomInput";
 import { useNavigation } from "@react-navigation/native";
+import { useForm } from "react-hook-form";
 
 const ForgotPasswordScreen = () => {
-  const [username, setUsername] = useState("");
-  
+  // const [username, setUsername] = useState("");
+
+  const [email, setEmail] = useState("");
+
+  const {
+    control,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: 'default'
+    }
+  });
+
   const navigation = useNavigation();
 
   const onConfirmPressed = () => {
@@ -14,19 +26,22 @@ const ForgotPasswordScreen = () => {
   };
 
   const onSignInPress = () => {
-    navigation.navigate('SignIn');
+    navigation.navigate("SignIn");
   };
 
   return (
     <View style={styles.root}>
       <Text style={styles.title}>Recuperação de Senha</Text>
       <Text style={styles.line} />
-      <Text style={styles.text}>Digite seu e-mail</Text>
       <CustomInput
         placeholder="E-mail"
-        value={username}
-        setValue={setUsername}
-        name="user"
+        control={control}
+        rules={{
+          required: "O uso do e-mail é obrigatório",
+          validate: (value) => value === e || "E-mail está incorreto",
+        }}
+        name="email"
+        icon_name="user"
       />
       <CustomButton text="Confirmar" onPress={onConfirmPressed} />
       <CustomButton
@@ -46,7 +61,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     margin: 30,
     padding: 30,
-    marginVertical: 100
+    marginVertical: 100,
   },
   title: {
     fontSize: 21,

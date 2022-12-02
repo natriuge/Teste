@@ -11,8 +11,7 @@ import CustomInput from "../../components/CustomInput/CustomInput";
 import epistemicLogo from "../../../assets/images/epistemic-logo.png";
 import CustomButton from "../../components/CustomButton";
 import { useNavigation } from "@react-navigation/native";
-import { useForm, Controller } from "react-hook-form";
-
+import { useForm } from "react-hook-form";
 
 const SignInScreen = () => {
   const [email, setEmail] = useState("");
@@ -25,10 +24,13 @@ const SignInScreen = () => {
     control,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
 
-  const onSignInPressed = (data) => {
-    console.log(data);
+  const typedEmail = "abc@epistemic";
+  const typedPassword = "epistemic";
+
+  const onSignInPressed = () => {
     navigation.navigate("Home");
   };
 
@@ -38,7 +40,6 @@ const SignInScreen = () => {
 
   const onSignUpPressed = () => {
     console.warn("Cadastre-se");
-
   };
 
   const onTermsPressed = () => {
@@ -51,18 +52,25 @@ const SignInScreen = () => {
 
       <CustomInput
         placeholder="E-mail"
-        rules={{ required: "O uso do e-mail é obrigatório" }}
+        control={control}
+        rules={{
+          required: "O uso do e-mail é obrigatório",
+          validate: (value) => value === typedEmail || "E-mail está incorreto",
+        }}
         name="email"
         icon_name="user"
       />
       <CustomInput
         placeholder="Senha"
+        control={control}
         rules={{
           required: "O uso da senha é obrigatório",
           minLength: {
             value: 5,
             message: "A senha deve conter no mínimo 5 caracteres",
           },
+          validate: (value) =>
+            value === typedPassword || "Senha está incorreta",
         }}
         name="password"
         icon_name="lock1"

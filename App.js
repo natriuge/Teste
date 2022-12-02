@@ -1,8 +1,8 @@
-
 import { StyleSheet, Text, View } from "react-native";
 import SignInScreen from "./src/screens/SignScreen/SignInScreen";
 import { LinearGradient } from "expo-linear-gradient";
 import ForgotPasswordScreen from "./src/screens/ForgotPasswordScreen/ForgotPasswordScreen";
+import HomeScreen from "./src/screens/HomeScreen";
 import Navigation from "./src/navigation";
 
 export default function App() {
