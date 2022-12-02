@@ -5,11 +5,15 @@ import CustomInput from "../../components/CustomInput/CustomInput";
 import { useNavigation } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
 
-const ForgotPasswordScreen = () => {
+const ForgotPasswordScreen = (props) => {
   const {
     control,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      email: props.email,
+    },
+  });
 
   const navigation = useNavigation();
 

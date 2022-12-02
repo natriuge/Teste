@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Image,
-  StyleSheet,
-  Text,
-  useWindowDimensions,
-  TextInput,
-} from "react-native";
+import { View, Image, StyleSheet, Text, TextInput } from "react-native";
 import CustomInput from "../../components/CustomInput/CustomInput";
 import epistemicLogo from "../../../assets/images/epistemic-logo.png";
 import CustomButton from "../../components/CustomButton";
@@ -18,11 +11,11 @@ const SignInScreen = () => {
   const [password, setPassword] = useState("");
   const [counter, setCounter] = useState(0);
 
-  const { height } = useWindowDimensions();
   const navigation = useNavigation();
 
   const {
     control,
+    handleSubmit,
     formState: { errors },
     watch,
   } = useForm();
@@ -63,7 +56,7 @@ const SignInScreen = () => {
         onChangeHandler={setEmail}
         rules={{
           required: "O uso do e-mail é obrigatório",
-          validate: (value) => [value === typedEmail || "E-mail está incorreto", console.log(value)],
+          validate: (value) => value === typedEmail || "E-mail está incorreto",
         }}
         name="email"
         icon_name="user"
@@ -85,7 +78,8 @@ const SignInScreen = () => {
         icon_name="lock1"
         secureTextEntry={true}
       />
-      <CustomButton text="ENTRAR" onPress={onSignInPressed} />
+      <CustomButton text="ENTRAR" onPress={handleSubmit(onSignInPressed)} />
+      {/* <CustomButton text="ENTRAR" onPress={onSignInPressed} /> */}
       <CustomButton
         text="Esqueceu sua senha? Clique Aqui"
         onPress={onForgotPasswordPressed}
